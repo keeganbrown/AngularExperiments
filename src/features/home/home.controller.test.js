@@ -9,7 +9,7 @@ describe('Controller: Home', function() {
 		$controller = _$controller_;
 	}));
 
-	it('name is initialized to "Loading..."', function() {
+	it('name is initialized to "Please Wait."', function() {
 		let ctrl = $controller('HomeController');
 		expect(ctrl.user.name).toBe('Please Wait.');
 	});

@@ -4,10 +4,17 @@ body {
 .home-main {
 	background-color: #FFF;
 }
+.repo-list {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
 .github-repo-item {
 	display: block;
 	border: 1px solid #ddd;
 	background-color: #FFF;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 .github-repo-item strong {
 	display: block;

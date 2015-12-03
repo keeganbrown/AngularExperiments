@@ -51,7 +51,7 @@ class GithupRepos {
 			}, 
 			(error) => {
 				console.log(error);
-				this.fallback = true;
+				this.userconfig.fallback = true;
 				this.updateData();
 			}
 		);
@@ -67,7 +67,7 @@ class GithupRepos {
 			}, 
 			(error) => {
 				console.log(error);
-				this.fallback = true;
+				this.userconfig.fallback = true;
 				this.updateData();
 			}
 		);
