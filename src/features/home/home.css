@@ -1,3 +1,21 @@
 body {
 	background-color: #999;
 }
+.home-main {
+	background-color: #FFF;
+}
+.github-repo-item {
+	display: block;
+	border: 1px solid #ddd;
+	background-color: #FFF;
+}
+.github-repo-item strong {
+	display: block;
+}
+.github-repo-item a {
+	display: block;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

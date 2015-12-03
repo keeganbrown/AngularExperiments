@@ -24,13 +24,13 @@ class GithupRepos {
 		this.updateUser();
 	}
 	getReposUrl() {
-		if (this.fallback) {
+		if (this.userconfig.fallback) {
 			return '/json/repos.json'
 		}
 		return this.userconfig.root + this.userconfig.username + this.userconfig.repos;
 	}
 	getUserUrl() {
-		if (this.fallback) {
+		if (this.userconfig.fallback) {
 			return '/json/keeganbrown.json'
 		}
 		return this.userconfig.root + this.userconfig.username;
