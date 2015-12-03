@@ -5,7 +5,8 @@ class GithupRepos {
 		this.userconfig = {
 			root: 'https://api.github.com/users',
 			username: '/keeganbrown',
-			repos: '/repos'
+			repos: '/repos',
+			fallback: false
 		}
 		this.user = {
 			login: 'loading',
@@ -16,8 +17,23 @@ class GithupRepos {
 			description: ''
 		}];
 		this.$http = $http;
+		this.updateData();
+	}
+	updateData() {
 		this.updateRepos();
 		this.updateUser();
+	}
+	getReposUrl() {
+		if (this.fallback) {
+			return '/json/repos.json'
+		}
+		return this.userconfig.root + this.userconfig.username + this.userconfig.repos;
+	}
+	getUserUrl() {
+		if (this.fallback) {
+			return '/json/keeganbrown.json'
+		}
+		return this.userconfig.root + this.userconfig.username;
 	}
 	getRepos() {
 		return this.repos;
@@ -28,20 +44,22 @@ class GithupRepos {
 	updateRepos() {
 		//let this = this;
 		this.reposPromise = this.$http({
-			url: this.userconfig.root + this.userconfig.username + this.userconfig.repos
+			url: this.getReposUrl()
 		}).then(
 			(res) => {
 				this.repos = res.data;
 			}, 
 			(error) => {
 				console.log(error);
+				this.fallback = true;
+				this.updateData();
 			}
 		);
 	}
 	updateUser() {
 		//let this = this;
 		this.usersPromise = this.$http({
-			url: this.userconfig.root + this.userconfig.username
+			url: this.getUserUrl()
 		}).then(
 			(res) => {
 				this.user = res.data;
@@ -49,6 +67,8 @@ class GithupRepos {
 			}, 
 			(error) => {
 				console.log(error);
+				this.fallback = true;
+				this.updateData();
 			}
 		);
 	}
