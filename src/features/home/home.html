@@ -1,5 +1,11 @@
 <div class="jumbotron">
-  <h1>Hello, {{home.name}}</h1>
+  <h1>Hello, {{home.getUser().name}}</h1>
+  <ul class="list-inline clearfix">
+  	<li ng-repeat="repo in home.getRepos()" class="col-md-6">
+  		<strong>{{repo.name}}</strong>
+  		<a href="{{repo.url}}"><span>{{repo.url}}</span></a>
+  	</li>
+  </ul>
 </div>
 
 <button class="btn btn-primary" ng-click="home.changeName()">Change</button>
