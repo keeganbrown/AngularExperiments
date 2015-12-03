@@ -10,4 +10,4 @@ export default class HomeController {
   }
 }
 
-HomeController.$inject = ['randomNames'];
+HomeController.$inject = ['randomNames', 'githubRepos'];
