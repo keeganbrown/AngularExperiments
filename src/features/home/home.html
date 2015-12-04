@@ -1,13 +1,13 @@
 <div class="home-main container-fluid">
-  <h1>Hello, {{home.getUser().name}}</h1>
-  <ul class="clearfix repo-list">
-  	<li ng-repeat="repo in home.getRepos()" class="col-md-6 github-repo-item">
-  		<div class="col-12-xs">
-  			<strong>{{repo.name}}</strong>
-  			<a href="{{repo.html_url}}" target="_blank"><span>{{repo.html_url}}</span></a>
-  		</div>
-  	</li>
-  </ul>
+	<h1>Hello, {{home.getUser().name}}</h1>
+	<ul class="clearfix repo-list">
+		<li ng-repeat="repo in home.getRepos()" class="col-md-6 github-repo-item">
+			<div class="col-12-xs">
+				<strong>{{repo.name}}</strong>
+				<a href="{{repo.html_url}}" target="_blank"><span>{{repo.html_url}}</span></a>
+			</div>
+		</li>
+	</ul>
 </div>
 
 <button class="btn btn-primary" ng-click="home.changeName()">Change</button>

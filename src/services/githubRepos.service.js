@@ -63,7 +63,7 @@ class GithupRepos {
 		}).then(
 			(res) => {
 				this.user = res.data;
-				console.log(this.user);
+				//console.log(this.user);
 			}, 
 			(error) => {
 				console.log(error);
