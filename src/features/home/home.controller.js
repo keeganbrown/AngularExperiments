@@ -5,17 +5,23 @@ export default class HomeController {
 		this.githubRepos = githubRepos;
 		this.user = this.getUser();
 		this.name = this.user.name;
-		//console.log(randomNames, githubRepos);
+		this.$scope = $scope;
+		this.getUser();
+	}
+	showGreeting() {
+		return !!this.getUser().url;
 	}
 	getUser() {
-		return this.githubRepos.getUser();
+		this.user = this.githubRepos.getData('user');
+		return this.user;
 	}
 	getRepos() {
-		return this.githubRepos.getRepos();
+		return this.githubRepos.getData('repos');
 	}
-	changeName() {
-		this.name = this.random.getName(this.name);
+	changeName(item) {
+		console.log(item);
+		this.name = this.githubRepos.changeUser( item );
 	}
 }
 
-HomeController.$inject = ['randomNames', 'githubRepos'];
+HomeController.$inject = ['randomNames', 'githubRepos','$scope'];

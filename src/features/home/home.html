@@ -1,14 +1,21 @@
 <div class="home-main container-fluid">
-	<h1>Hello, {{home.getUser().name}}</h1>
-	<ul class="clearfix repo-list">
-		<li ng-repeat="repo in home.getRepos()" class="col-md-6 github-repo-item">
-			<div class="col-12-xs">
-				<strong>{{repo.name}}</strong>
-				<a href="{{repo.html_url}}" target="_blank"><span>{{repo.html_url}}</span></a>
-			</div>
-		</li>
-	</ul>
+	<header class="user-header clearfix">
+		<h1 class="user-greeting col-md-6" ng-if="home.showGreeting()">Hello, {{home.getUser().name}}</h1>
+		<div class="col-md-6 input-group">
+			<input type="text" class="form-control" id="userLogin" ng-model="home.user.login">
+			<span class="input-group-btn"><button class="btn btn-primary" ng-click="home.changeName(home.user.login)">Change</button></span>
+		</div>
+	</header>
+	<section class="repo-box container-fluid">
+		<ul class="clearfix repo-list">
+			<li ng-repeat="repo in home.getRepos()" class="col-md-6 github-repo-item">
+				<div class="col-12-xs">
+					<strong>{{repo.name}}</strong>
+					<a href="{{repo.html_url}}" target="_blank"><span>{{repo.html_url}}</span></a>
+				</div>
+			</li>
+		</ul>
+	</section>
 </div>
 
-<button class="btn btn-primary" ng-click="home.changeName()">Change</button>
 

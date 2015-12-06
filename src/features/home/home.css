@@ -1,6 +1,18 @@
 body {
 	background-color: #999;
 }
+.user-header {
+	padding-top: 30px;
+	padding-bottom: 15px;
+}
+.repo-box {
+	padding-top: 15px;
+	padding-bottom: 45px;
+}
+.user-header h1 {
+	margin: 0;
+	line-height: 1;
+}
 .home-main {
 	background-color: #FFF;
 }

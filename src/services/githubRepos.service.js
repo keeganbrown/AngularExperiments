@@ -6,7 +6,8 @@ class GithupRepos {
 			root: 'https://api.github.com/users',
 			username: '/keeganbrown',
 			repos: '/repos',
-			fallback: false
+			fallback: false,
+			lockdown: false
 		}
 		this.user = {
 			login: 'loading',
@@ -17,60 +18,58 @@ class GithupRepos {
 			description: ''
 		}];
 		this.$http = $http;
-		this.updateData();
+		this.batchDataUpdate();
 	}
-	updateData() {
-		this.updateRepos();
-		this.updateUser();
+	changeUser(newUser) {
+		this.userconfig.username = newUser;
+		this.batchDataUpdate();
+	}
+	batchDataUpdate( errorFallback ) {
+		if ( errorFallback ) {
+			this.userconfig.fallback = true;
+		}
+		if ( !this.userconfig.lockdown ) {
+			this.updateRepos();
+			this.updateUser();
+			if ( this.userconfig.fallback ) {
+				this.userconfig.lockdown = true;
+			}
+		}
 	}
 	getReposUrl() {
-		if (this.userconfig.fallback) {
+		if (this.userconfig.fallback ) {
 			return '/json/repos.json'
 		}
 		return this.userconfig.root + this.userconfig.username + this.userconfig.repos;
 	}
 	getUserUrl() {
-		if (this.userconfig.fallback) {
-			return '/json/keeganbrown.json'
+		if (this.userconfig.fallback ) {
+			return '/json/user.json'
 		}
 		return this.userconfig.root + this.userconfig.username;
 	}
-	getRepos() {
-		return this.repos;
+	getData(setName, cb) {
+		if (cb) cb(this[setName]);
+		return this[setName];
 	}
-	getUser() {
-		return this.user;
+	updateDataSet( promiseStore, getUrlHandle, storageLocation ) {
+		this[promiseStore] = this.$http({
+			url: this[getUrlHandle]()
+		}).then(
+			(res) => {
+				this[storageLocation] = res.data;
+			}, 
+			(error) => {
+				console.log(error);
+				this.batchDataUpdate( true );
+			}
+		);		
 	}
 	updateRepos() {
-		//let this = this;
-		this.reposPromise = this.$http({
-			url: this.getReposUrl()
-		}).then(
-			(res) => {
-				this.repos = res.data;
-			}, 
-			(error) => {
-				console.log(error);
-				this.userconfig.fallback = true;
-				this.updateData();
-			}
-		);
+		this.updateDataSet('reposPromise','getReposUrl','repos');
 	}
 	updateUser() {
-		//let this = this;
-		this.usersPromise = this.$http({
-			url: this.getUserUrl()
-		}).then(
-			(res) => {
-				this.user = res.data;
-				//console.log(this.user);
-			}, 
-			(error) => {
-				console.log(error);
-				this.userconfig.fallback = true;
-				this.updateData();
-			}
-		);
+		this.updateDataSet('usersPromise','getUserUrl','user');
 	}
 }
 

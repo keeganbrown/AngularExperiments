@@ -207,6 +207,10 @@ module.exports = function makeWebpackConfig (options) {
     )
   }
 
+  if (!BUILD) {
+    let proxyServer = require('./devserver.proxy.js');
+  }
+
   /**
    * Dev server configuration
    * Reference: http://webpack.github.io/docs/configuration.html#devserver

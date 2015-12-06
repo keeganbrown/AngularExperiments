@@ -14,5 +14,6 @@ export default angular.module('app.home', [uirouter, animate, randomNames, githu
   .config(routing)
   .constant('TweenMax', TweenMax)
   .controller('HomeController', HomeController)
-  .animation('.github-repo-item', HomeAnimation)
+  .animation('.github-repo-item', HomeAnimation.githubRepoItem)
+  .animation('.user-greeting', HomeAnimation.userGreeting)
   .name;
