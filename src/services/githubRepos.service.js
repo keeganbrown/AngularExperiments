@@ -14,14 +14,19 @@ class GithupRepos {
 			name: 'Please Wait.'
 		}
 		this.repos = [{
-			name: 'Loading...',
-			description: ''
+			name: '',
+			html_url: ''
 		}];
 		this.$http = $http;
 		this.batchDataUpdate();
 	}
 	changeUser(newUser) {
-		this.userconfig.username = newUser;
+		this.user = {
+			login: 'loading',
+			name: 'Please Wait.'
+		};
+		this.repos = [];
+		this.userconfig.username = '/'+newUser;
 		this.batchDataUpdate();
 	}
 	batchDataUpdate( errorFallback ) {

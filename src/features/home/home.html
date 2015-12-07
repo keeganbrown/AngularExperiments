@@ -1,7 +1,7 @@
 <div class="home-main container-fluid">
 	<header class="user-header clearfix">
-		<h1 class="user-greeting col-md-6" ng-if="home.showGreeting()">Hello, {{home.getUser().name}}</h1>
-		<div class="col-md-6 input-group">
+		<h1 class="user-greeting col-md-6" ng-if="home.getUser().name">Hello, {{home.getUser().name}}</h1>
+		<div class="col-md-6 input-group pull-right">
 			<input type="text" class="form-control" id="userLogin" ng-model="home.user.login">
 			<span class="input-group-btn"><button class="btn btn-primary" ng-click="home.changeName(home.user.login)">Change</button></span>
 		</div>

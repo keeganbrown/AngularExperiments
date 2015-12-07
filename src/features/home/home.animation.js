@@ -18,7 +18,7 @@ var HomepageAnimation = {
 
 			},
 			leave: function (element, done) {
-				TweenMax.to(element, 0.3, 
+				TweenMax.to(element, 0.7, 
 					{ 
 						text: '                   ',
 						ease: Linear.easeNone,
@@ -35,15 +35,17 @@ var HomepageAnimation = {
 			enter: function (element, done) {
 				//console.log('test', element);
 				index++;
-				TweenMax.fromTo(element, 0.5, 
+				TweenMax.fromTo(element, 0.7, 
 					{ 
 						opacity: 0,
+						rotationX: 0,
 						top: 100
 					}, 
 					{ 
 						opacity: 1, 
+						rotationX: 360,
 						top: 0,
-						delay: index/10, 
+						delay: index/50, 
 						ease: Back.easeOut,
 						onComplete: function () {
 							done();
@@ -61,7 +63,7 @@ var HomepageAnimation = {
 					{ 
 						opacity: 0, 
 						top: 100,
-						delay: index/10, 
+						delay: index/100, 
 						ease: Back.easeOut,
 						onComplete: function () {
 							done();
